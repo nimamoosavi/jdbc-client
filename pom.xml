@@ -57,6 +57,22 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>com.nicico.cost</groupId>
+            <artifactId>framework</artifactId>
+            <version>1.0.1-Released</version>
+        </dependency>
+        <dependency>
+            <groupId>com.nicico.cost</groupId>
+            <artifactId>crud</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jetbrains</groupId>
+            <artifactId>annotations</artifactId>
+            <version>RELEASE</version>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
 
     <build>
