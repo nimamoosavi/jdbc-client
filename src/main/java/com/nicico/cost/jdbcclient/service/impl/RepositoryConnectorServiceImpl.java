@@ -3,7 +3,7 @@ package com.nicico.cost.jdbcclient.service.impl;
 import com.nicico.cost.crud.domain.entity.BaseEntity;
 import com.nicico.cost.framework.service.exception.ApplicationException;
 import com.nicico.cost.jdbcclient.repository.RepositoryConnector;
-import com.nicico.cost.jdbcclient.service.RelationalDBConnector;
+import com.nicico.cost.jdbcclient.service.RepositoryConnectorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -20,7 +20,7 @@ import java.util.Optional;
  * @param <I> is the type of data base Identity class such as Long,String, ...
  * @apiNote this class you must extended your service and create a bean of it and is the implementation of General Repository in Crud Library
  */
-public abstract class RelationalDBConnectorImpl<T extends BaseEntity<I>, I extends Serializable> implements RelationalDBConnector<T, I> {
+public abstract class RepositoryConnectorServiceImpl<T extends BaseEntity<I>, I extends Serializable> implements RepositoryConnectorService<T, I> {
 
     @Autowired
     RepositoryConnector<T, I> repositoryConnector;
