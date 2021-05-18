@@ -10,7 +10,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Optional;
@@ -28,13 +27,13 @@ public abstract class RepositoryConnectorServiceImpl<T extends BaseEntity<I>, I 
     ApplicationException applicationException;
 
     @Override
-    public Optional<T> save(@NotNull T t) {
+    public Optional<T> save(T t) {
         T save = repositoryConnector.save(t);
         return Optional.of(save);
     }
 
     @Override
-    public Optional<T> update(@NotNull I id, @NotNull T t) {
+    public Optional<T> update(I id, T t) {
         t.setId(id);
         T save = repositoryConnector.save(t);
         return Optional.of(save);
@@ -47,7 +46,7 @@ public abstract class RepositoryConnectorServiceImpl<T extends BaseEntity<I>, I 
     }
 
     @Override
-    public Optional<T> findById(@NotNull I id) {
+    public Optional<T> findById(I id) {
         return repositoryConnector.findById(id);
     }
 
@@ -77,7 +76,7 @@ public abstract class RepositoryConnectorServiceImpl<T extends BaseEntity<I>, I 
     }
 
     @Override
-    public void deleteById(@NotNull I id) {
+    public void deleteById(I id) {
         repositoryConnector.deleteById(id);
     }
 
