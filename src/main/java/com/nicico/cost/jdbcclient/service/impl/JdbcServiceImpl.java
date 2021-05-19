@@ -27,22 +27,22 @@ public abstract class JdbcServiceImpl<T extends BaseEntity<I>, I extends Seriali
     ApplicationException applicationException;
 
     @Override
-    public Optional<T> save(T t) {
+    public T save(T t) {
         T save = jdbcRepository.save(t);
-        return Optional.of(save);
+        return save;
     }
 
     @Override
-    public Optional<T> update(I id, T t) {
+    public T update(I id, T t) {
         t.setId(id);
         T save = jdbcRepository.save(t);
-        return Optional.of(save);
+        return save;
     }
 
     @Override
-    public Optional<List<T>> saveAll(List<T> tList) {
+    public List<T> saveAll(List<T> tList) {
         List<T> list = jdbcRepository.saveAll(tList);
-        return Optional.of(list);
+        return list;
     }
 
     @Override
@@ -51,23 +51,23 @@ public abstract class JdbcServiceImpl<T extends BaseEntity<I>, I extends Seriali
     }
 
     @Override
-    public Optional<List<T>> findAll() {
+    public List<T> findAll() {
         List<T> all = jdbcRepository.findAll();
-        return Optional.of(all);
+        return all;
     }
 
     @Override
-    public Optional<List<T>> findAll(int page, int pageSize) {
+    public List<T> findAll(int page, int pageSize) {
         Pageable pageable = pagination(page, pageSize);
         Page<T> all = jdbcRepository.findAll(pageable);
-        return Optional.of(all.toList());
+        return all.toList();
     }
 
     @Override
-    public Optional<List<T>> findAll(int page, int pageSize, String orders) {
+    public List<T> findAll(int page, int pageSize, String orders) {
         Pageable pageable = pagination(page, pageSize, orders);
         Page<T> all = jdbcRepository.findAll(pageable);
-        return Optional.of(all.toList());
+        return all.toList();
     }
 
     @Override
