@@ -1,7 +1,6 @@
 package com.nicico.cost.jdbcclient.service.impl;
 
 import com.nicico.cost.crud.domain.entity.BaseEntity;
-import com.nicico.cost.framework.service.exception.ApplicationException;
 import com.nicico.cost.jdbcclient.repository.JdbcRepository;
 import com.nicico.cost.jdbcclient.service.JdbcService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,26 +22,21 @@ public abstract class JdbcServiceImpl<T extends BaseEntity<I>, I extends Seriali
 
     @Autowired
     JdbcRepository<T, I> jdbcRepository;
-    @Autowired
-    ApplicationException applicationException;
 
     @Override
     public T save(T t) {
-        T save = jdbcRepository.save(t);
-        return save;
+        return jdbcRepository.save(t);
     }
 
     @Override
     public T update(I id, T t) {
         t.setId(id);
-        T save = jdbcRepository.save(t);
-        return save;
+        return jdbcRepository.save(t);
     }
 
     @Override
     public Iterable<T> saveAll(Iterable<T> tList) {
-        List<T> list = jdbcRepository.saveAll(tList);
-        return list;
+        return jdbcRepository.saveAll(tList);
     }
 
     @Override
@@ -52,8 +46,7 @@ public abstract class JdbcServiceImpl<T extends BaseEntity<I>, I extends Seriali
 
     @Override
     public List<T> findAll() {
-        List<T> all = jdbcRepository.findAll();
-        return all;
+        return jdbcRepository.findAll();
     }
 
     @Override
