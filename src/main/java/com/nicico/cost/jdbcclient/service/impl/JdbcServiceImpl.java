@@ -64,7 +64,7 @@ public abstract class JdbcServiceImpl<T extends BaseEntity<I>, I extends Seriali
     }
 
     @Override
-    public Optional<List<T>> findAll(int page, int pageSize, List<Sort.Order> orders) {
+    public Optional<List<T>> findAll(int page, int pageSize, String orders) {
         Pageable pageable = pagination(page, pageSize, orders);
         Page<T> all = jdbcRepository.findAll(pageable);
         return Optional.of(all.toList());
@@ -84,7 +84,7 @@ public abstract class JdbcServiceImpl<T extends BaseEntity<I>, I extends Seriali
         return PageRequest.of(page - 1, pageSize);
     }
 
-    private Pageable pagination(int page, int pageSize, List<Sort.Order> orders) {
-        return PageRequest.of(page - 1, pageSize, Sort.by(orders));
+    private Pageable pagination(int page, int pageSize, String order) {
+        return PageRequest.of(page - 1, pageSize, Sort.by(order));
     }
 }
