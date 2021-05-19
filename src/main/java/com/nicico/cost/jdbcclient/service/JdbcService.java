@@ -13,5 +13,5 @@ import java.io.Serializable;
  * @apiNote this interface is the implementation of JpaRepository of Spring Data you can find know about it in {@link <a https://spring.io/projects/spring-data-jpa</a>}
  * you must create an interface and extended of it and generate a bean of your interface
  */
-public interface RepositoryConnectorService<T extends BaseEntity<I>, I extends Serializable> extends GeneralRepository<T, I> {
+public interface JdbcService<T extends BaseEntity<I>, I extends Serializable> extends GeneralRepository<T, I> {
 }

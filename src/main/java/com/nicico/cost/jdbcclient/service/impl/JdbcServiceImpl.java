@@ -2,8 +2,8 @@ package com.nicico.cost.jdbcclient.service.impl;
 
 import com.nicico.cost.crud.domain.entity.BaseEntity;
 import com.nicico.cost.framework.service.exception.ApplicationException;
-import com.nicico.cost.jdbcclient.repository.RepositoryConnector;
-import com.nicico.cost.jdbcclient.service.RepositoryConnectorService;
+import com.nicico.cost.jdbcclient.repository.JdbcRepository;
+import com.nicico.cost.jdbcclient.service.JdbcService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -19,65 +19,65 @@ import java.util.Optional;
  * @param <I> is the type of data base Identity class such as Long,String, ...
  * @apiNote this class you must extended your service and create a bean of it and is the implementation of General Repository in Crud Library
  */
-public abstract class RepositoryConnectorServiceImpl<T extends BaseEntity<I>, I extends Serializable> implements RepositoryConnectorService<T, I> {
+public abstract class JdbcServiceImpl<T extends BaseEntity<I>, I extends Serializable> implements JdbcService<T, I> {
 
     @Autowired
-    RepositoryConnector<T, I> repositoryConnector;
+    JdbcRepository<T, I> jdbcRepository;
     @Autowired
     ApplicationException applicationException;
 
     @Override
     public Optional<T> save(T t) {
-        T save = repositoryConnector.save(t);
+        T save = jdbcRepository.save(t);
         return Optional.of(save);
     }
 
     @Override
     public Optional<T> update(I id, T t) {
         t.setId(id);
-        T save = repositoryConnector.save(t);
+        T save = jdbcRepository.save(t);
         return Optional.of(save);
     }
 
     @Override
     public Optional<List<T>> saveAll(List<T> tList) {
-        List<T> list = repositoryConnector.saveAll(tList);
+        List<T> list = jdbcRepository.saveAll(tList);
         return Optional.of(list);
     }
 
     @Override
     public Optional<T> findById(I id) {
-        return repositoryConnector.findById(id);
+        return jdbcRepository.findById(id);
     }
 
     @Override
     public Optional<List<T>> findAll() {
-        List<T> all = repositoryConnector.findAll();
+        List<T> all = jdbcRepository.findAll();
         return Optional.of(all);
     }
 
     @Override
     public Optional<List<T>> findAll(int page, int pageSize) {
         Pageable pageable = pagination(page, pageSize);
-        Page<T> all = repositoryConnector.findAll(pageable);
+        Page<T> all = jdbcRepository.findAll(pageable);
         return Optional.of(all.toList());
     }
 
     @Override
     public Optional<List<T>> findAll(int page, int pageSize, List<Sort.Order> orders) {
         Pageable pageable = pagination(page, pageSize, orders);
-        Page<T> all = repositoryConnector.findAll(pageable);
+        Page<T> all = jdbcRepository.findAll(pageable);
         return Optional.of(all.toList());
     }
 
     @Override
     public long count() {
-        return repositoryConnector.count();
+        return jdbcRepository.count();
     }
 
     @Override
     public void deleteById(I id) {
-        repositoryConnector.deleteById(id);
+        jdbcRepository.deleteById(id);
     }
 
     private Pageable pagination(int page, int pageSize) {
