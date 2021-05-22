@@ -9,6 +9,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 /**
  * @param <T> is the entity class that you must Extended to BaseEntity class {@link com.nicico.cost.crud.domain.entity.BaseEntity}
@@ -97,4 +98,22 @@ public interface JdbcService<T extends BaseEntity<I>, I extends Serializable> ex
      * @return the Object Time out of Connection
      */
     int queryTimeOut(JdbcTemplate jdbcTemplate);
+
+    T save(T t);
+
+    T update(I id, T t);
+
+    List<T> saveAll(List<T> tList);
+
+    Optional<T> findById(I id);
+
+    List<T> findAll();
+
+    List<T> findAll(int page, int pageSize);
+
+    List<T> findAll(int page, int pageSize, String orders);
+
+    long count();
+
+    void deleteById(I id);
 }
