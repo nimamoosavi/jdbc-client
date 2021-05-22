@@ -99,21 +99,67 @@ public interface JdbcService<T extends BaseEntity<I>, I extends Serializable> ex
      */
     int queryTimeOut(JdbcTemplate jdbcTemplate);
 
+    /**
+     * @param t the Entity View Model that you must Add To Data Base
+     * @return the Optional Of Entity that save it in data base
+     * @apiNote this method used SpringJpa
+     */
     T save(T t);
 
+    /**
+     * @param id the incrementalId of data base Object
+     * @param t  the Entity View Model that you must Add To Data Base
+     * @return the Entity that save it in data base
+     * @apiNote this method used SpringJpa
+     */
     T update(I id, T t);
 
+    /**
+     * @param tList the list of Entity that you must save it in Data base
+     * @return the List Of Entity and their Ids
+     * @apiNote this method used SpringJpa
+     */
     List<T> saveAll(List<T> tList);
 
+    /**
+     * @param id the incrementalId of data base Object
+     * @return the Entity that save it in data base
+     * @apiNote used for fetch Data By IncrementalId And this method used SpringJpa
+     */
     Optional<T> findById(I id);
 
+    /**
+     * @return the List Of Entities
+     * @apiNote this method used SpringJpa
+     */
     List<T> findAll();
 
+    /**
+     * @param page     the page number that you must fetch it
+     * @param pageSize the page Size of that you need to split Data
+     * @apiNote this method used SpringJpa
+     */
     List<T> findAll(int page, int pageSize);
 
+    /**
+     * @param page     the page number that you must fetch it
+     * @param pageSize the page Size of that you need to split Data
+     * @param orders   is the list of fields and your direction such as Asc and Desc for Sorting
+     * @return the List Of Entity from Response Of Data Base
+     * @apiNote this method used SpringJpa
+     */
     List<T> findAll(int page, int pageSize, String orders);
 
+    /**
+     * @return the Number Of data
+     * @apiNote this method used SpringJpa
+     */
     long count();
 
+    /**
+     * @param id is the incrementalId of Object that you need too remove it from Data Base
+     * @throws RuntimeException has throw if Delete Method Not Acceptable
+     * @apiNote this method used SpringJpa
+     */
     void deleteById(I id);
 }
