@@ -2,16 +2,99 @@ package com.nicico.cost.jdbcclient.service;
 
 import com.nicico.cost.crud.domain.entity.BaseEntity;
 import com.nicico.cost.crud.repository.GeneralRepository;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
 import java.io.Serializable;
+import java.util.List;
+import java.util.Map;
 
 /**
- * @version 1.0.1
- * @author nima
  * @param <T> is the entity class that you must Extended to BaseEntity class {@link com.nicico.cost.crud.domain.entity.BaseEntity}
  * @param <I> is the IncrementalId Type Of Relation Data base
+ * @author nima
+ * @version 1.0.1
  * @apiNote this interface is the implementation of JpaRepository of Spring Data you can find know about it in {@link <a https://spring.io/projects/spring-data-jpa</a>}
+ * and Used NameParameterJdbcTemplate And JdbcTemplate of Spring Framework For native Query.
  * you must create an interface and extended of it and generate a bean of your interface
  */
 public interface JdbcService<T extends BaseEntity<I>, I extends Serializable> extends GeneralRepository<T, I> {
+
+    /**
+     * @param sql                is the native query for execute in Data Base
+     * @param sqlParameterSource is the parameter source for execute parametric
+     * @return List<Map < String, Object>> of the result of data base
+     */
+    List<Map<String, Object>> queryForList(String sql, MapSqlParameterSource sqlParameterSource);
+
+    /**
+     * @param sql                is the native query for execute in Data Base
+     * @param sqlParameterSource is the parameter source for execute parametric
+     * @param tClass             the class you want cast it
+     * @return List<T> the object that cast it
+     */
+    List<T> queryForList(String sql, MapSqlParameterSource sqlParameterSource, Class<T> tClass);
+
+    /**
+     * @param sql          is the native query for execute in Data Base
+     * @param queryTimeOut is the time that you want method wait for response
+     * @param tClass       the class you want cast it
+     * @return List<T> the object that cast it
+     */
+    List<T> queryForList(String sql, int queryTimeOut, Class<T> tClass);
+
+    /**
+     * @param sql          is the native query for execute in Data Base
+     * @param queryTimeOut is the time that you want method wait for response
+     * @return List<Map < String, Object>> is the result of data Base
+     */
+    List<Map<String, Object>> queryForList(String sql, int queryTimeOut);
+
+    /**
+     * @param sql                is the native query for execute in Data Base
+     * @param sqlParameterSource is the parameter source for execute parametric
+     * @param tClass             the class you want cast it
+     * @return the single result that result from data Base
+     * @apiNote you must know if the result not been single the methode throw Runtime Exception
+     */
+    T query(String sql, MapSqlParameterSource sqlParameterSource, Class<T> tClass);
+
+    /**
+     * @param sql          is the native query for execute in Data Base
+     * @param queryTimeOut is the time that you want method wait for response
+     * @param tClass       the class you want cast it
+     * @return T is the Object of result from data base
+     */
+    T query(String sql, int queryTimeOut, Class<T> tClass);
+
+    /**
+     * @param sql                is the native query for execute in Data Base
+     * @param sqlParameterSource is the parameter source for execute parametric
+     * @return Map<String, Object> the result of Data base
+     * @apiNote you must know if the result not been single the methode throw Runtime Exception
+     */
+    Map<String, Object> query(String sql, MapSqlParameterSource sqlParameterSource);
+
+    /**
+     * @return the number of max rows in table
+     */
+    int maxRows();
+
+    /**
+     * @return the default Time out of Connection
+     */
+    int queryTimeOut();
+
+    /**
+     * @param namedParameterJdbcTemplate is the Object of Spring that you must used it for execute query
+     * @return the Object Time out of Connection
+     */
+    int queryTimeOut(NamedParameterJdbcTemplate namedParameterJdbcTemplate);
+
+    /**
+     * @param jdbcTemplate is the Object of Spring that you must used it for execute query
+     * @return the Object Time out of Connection
+     */
+    int queryTimeOut(JdbcTemplate jdbcTemplate);
 }
