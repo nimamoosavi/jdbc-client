@@ -12,5 +12,5 @@ import java.io.Serializable;
  * you must create an interface and extended of it and generate a bean of your interface and use all method that Spring Data implement it
  * Good Luck
  */
-public interface JdbcRepository<T extends BaseEntity<I>, I extends Serializable> extends JpaRepository<T, I>{
+public interface JdbcRepository<T extends BaseEntity<I>, I extends Serializable> extends JpaRepository<T, I> {
 }

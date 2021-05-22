@@ -35,7 +35,7 @@ public abstract class JdbcServiceImpl<T extends BaseEntity<I>, I extends Seriali
     }
 
     @Override
-    public Iterable<T> saveAll(Iterable<T> tList) {
+    public List<T> saveAll(List<T> tList) {
         return jdbcRepository.saveAll(tList);
     }
 
