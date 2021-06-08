@@ -1,7 +1,8 @@
 package com.nicico.cost.jdbcclient.service;
 
-import com.nicico.cost.crud.domain.object.BaseObject;
 import com.nicico.cost.crud.repository.GeneralRepository;
+import com.nicico.cost.framework.packages.jdbc.Jdbc;
+import com.nicico.cost.framework.packages.jdbc.base.BaseObject;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -12,7 +13,7 @@ import java.util.Map;
 import java.util.Optional;
 
 /**
- * @param <T> is the entity class that you must Extended to BaseEntity class {@link com.nicico.cost.crud.domain.object.BaseObject}
+ * @param <T> is the entity class that you must Extended to BaseEntity class {@link BaseObject}
  * @param <I> is the IncrementalId Type Of Relation Data base
  * @author nima
  * @version 1.0.1
@@ -20,7 +21,7 @@ import java.util.Optional;
  * and Used NameParameterJdbcTemplate And JdbcTemplate of Spring Framework For native Query.
  * you must create an interface and extended of it and generate a bean of your interface
  */
-public interface JdbcService<T extends BaseObject<I>, I extends Serializable> extends GeneralRepository<T, I> {
+public interface JdbcService<T extends BaseObject<I>, I extends Serializable> extends GeneralRepository<T, I>, Jdbc<T, I> {
 
     /**
      * @param sql                is the native query for execute in Data Base

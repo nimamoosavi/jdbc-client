@@ -1,6 +1,6 @@
 package com.nicico.cost.jdbcclient.service.impl;
 
-import com.nicico.cost.crud.domain.object.BaseObject;
+import com.nicico.cost.framework.packages.jdbc.base.BaseObject;
 import com.nicico.cost.jdbcclient.repository.JdbcRepository;
 import com.nicico.cost.jdbcclient.service.JdbcService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +18,7 @@ import java.util.Map;
 import java.util.Optional;
 
 /**
- * @param <T> is the BaseObject class that you must Extended to BaseObject class {@link com.nicico.cost.crud.domain.object.BaseObject}
+ * @param <T> is the BaseObject class that you must Extended to BaseObject class {@link BaseObject}
  * @param <I> is the type of data base Identity class such as Long,String, ...
  * @apiNote this class you must extended your service and create a bean of it and is the implementation of General Repository in Crud Library
  */
