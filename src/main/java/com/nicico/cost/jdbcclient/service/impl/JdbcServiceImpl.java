@@ -1,5 +1,7 @@
 package com.nicico.cost.jdbcclient.service.impl;
 
+import com.nicico.cost.framework.domain.dto.BaseDTO;
+import com.nicico.cost.framework.domain.dto.PageDTO;
 import com.nicico.cost.framework.packages.crud.view.Keyword;
 import com.nicico.cost.framework.packages.crud.view.Sort;
 import com.nicico.cost.jdbcclient.repository.JdbcRepository;
