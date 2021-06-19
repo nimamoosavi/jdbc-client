@@ -1,17 +1,19 @@
 package com.nicico.cost.jdbcclient.service.impl;
 
+import com.nicico.cost.framework.packages.crud.view.Keyword;
+import com.nicico.cost.framework.packages.crud.view.Sort;
 import com.nicico.cost.jdbcclient.repository.JdbcRepository;
 import com.nicico.cost.jdbcclient.service.JdbcService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -61,8 +63,8 @@ public abstract class JdbcServiceImpl<T, I extends Serializable> implements Jdbc
     }
 
     @Override
-    public List<T> findAll(int page, int pageSize, String orders) {
-        Pageable pageable = pagination(page, pageSize, orders);
+    public List<T> findAll(int page, int pageSize, List<Sort> sorts) {
+        Pageable pageable = pagination(page, pageSize, sorts);
         Page<T> all = jdbcRepository.findAll(pageable);
         return all.toList();
     }
@@ -132,7 +134,14 @@ public abstract class JdbcServiceImpl<T, I extends Serializable> implements Jdbc
         return PageRequest.of(page - 1, pageSize);
     }
 
-    private Pageable pagination(int page, int pageSize, String order) {
-        return PageRequest.of(page - 1, pageSize, Sort.by(order));
+    private Pageable pagination(int page, int pageSize, List<Sort> sorts) {
+        List<org.springframework.data.domain.Sort.Order> orders = new ArrayList<>();
+        for (Sort sort : sorts) {
+            if (Boolean.TRUE.equals(sort.getKeyword().equals(Keyword.DESC)))
+                orders.add(org.springframework.data.domain.Sort.Order.desc(sort.getField()));
+            else
+                orders.add(org.springframework.data.domain.Sort.Order.asc(sort.getField()));
+        }
+        return PageRequest.of(page - 1, pageSize, org.springframework.data.domain.Sort.by(orders));
     }
 }
