@@ -1,6 +1,7 @@
 package com.nicico.cost.jdbcclient.service;
 
 import com.nicico.cost.crud.repository.GeneralRepository;
+import com.nicico.cost.framework.packages.crud.view.Criteria;
 import com.nicico.cost.framework.packages.crud.view.Sort;
 import com.nicico.cost.framework.packages.jdbc.Jdbc;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -135,11 +136,26 @@ public interface JdbcService<T, I extends Serializable> extends GeneralRepositor
     List<T> findAll();
 
     /**
+     * @param criteria is the criteria for find in where Clause
+     * @return the List Of Entities
+     * @apiNote this methode uses for Fetch All Data
+     */
+    List<T> findAll(Criteria criteria);
+
+    /**
      * @param page     the page number that you must fetch it
      * @param pageSize the page Size of that you need to split Data
      * @apiNote this method used SpringJpa
      */
     List<T> findAll(int page, int pageSize);
+
+    /**
+     * @param page     the page number that you must fetch it
+     * @param criteria is the criteria for find in where Clause
+     * @param pageSize the page Size of that you need to split Data
+     * @return the Optional List Of Entity from Response Of Data Base
+     */
+    List<T> findAll(int page, int pageSize, Criteria criteria);
 
     /**
      * @param page     the page number that you must fetch it
@@ -151,10 +167,26 @@ public interface JdbcService<T, I extends Serializable> extends GeneralRepositor
     List<T> findAll(int page, int pageSize, List<Sort> sorts);
 
     /**
+     * @param page     the page number that you must fetch it
+     * @param criteria is the criteria for find in where Clause
+     * @param pageSize the page Size of that you need to split Data
+     * @param orders   is the list of fields and your direction such as Asc and Desc for Sorting
+     * @return the Optional List Of Entity from Response Of Data Base
+     */
+    List<T> findAll(int page, int pageSize, List<Sort> orders, Criteria criteria);
+
+    /**
      * @return the Number Of data
      * @apiNote this method used SpringJpa
      */
     long count();
+
+    /**
+     * @param criteria is the criteria for find in where Clause
+     * @return the Number Of data
+     * @apiNote method used for get the count Of Data
+     */
+    long count(Criteria criteria);
 
     /**
      * @param id is the incrementalId of Object that you need too remove it from Data Base

@@ -2,6 +2,7 @@ package com.nicico.cost.jdbcclient.service.impl;
 
 import com.nicico.cost.framework.domain.dto.BaseDTO;
 import com.nicico.cost.framework.domain.dto.PageDTO;
+import com.nicico.cost.framework.packages.crud.view.Criteria;
 import com.nicico.cost.framework.packages.crud.view.Keyword;
 import com.nicico.cost.framework.packages.crud.view.Sort;
 import com.nicico.cost.jdbcclient.repository.JdbcRepository;
@@ -58,6 +59,26 @@ public abstract class JdbcServiceImpl<T, I extends Serializable> implements Jdbc
     }
 
     @Override
+    public List<T> findAll(Criteria criteria) {
+        return null;
+    }
+
+    @Override
+    public List<T> findAll(int page, int pageSize, Criteria criteria) {
+        return null;
+    }
+
+    @Override
+    public List<T> findAll(int page, int pageSize, List<Sort> orders, Criteria criteria) {
+        return null;
+    }
+
+    @Override
+    public long count(Criteria criteria) {
+        return 0;
+    }
+
+    @Override
     public List<T> findAll(int page, int pageSize) {
         Pageable pageable = pagination(page, pageSize);
         Page<T> all = jdbcRepository.findAll(pageable);
@@ -70,6 +91,7 @@ public abstract class JdbcServiceImpl<T, I extends Serializable> implements Jdbc
         Page<T> all = jdbcRepository.findAll(pageable);
         return all.toList();
     }
+
 
     @Override
     public long count() {
