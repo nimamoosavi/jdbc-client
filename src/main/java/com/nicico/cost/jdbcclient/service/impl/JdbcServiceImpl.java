@@ -154,11 +154,11 @@ public abstract class JdbcServiceImpl<T, I extends Serializable> implements Jdbc
     }
 
 
-    private Pageable pagination(int page, int pageSize) {
+    public Pageable pagination(int page, int pageSize) {
         return PageRequest.of(page - 1, pageSize);
     }
 
-    private Pageable pagination(int page, int pageSize, List<Sort> sorts) {
+    public Pageable pagination(int page, int pageSize, List<Sort> sorts) {
         List<org.springframework.data.domain.Sort.Order> orders = new ArrayList<>();
         for (Sort sort : sorts) {
             if (Boolean.TRUE.equals(sort.getKeyword().equals(Keyword.DESC)))
