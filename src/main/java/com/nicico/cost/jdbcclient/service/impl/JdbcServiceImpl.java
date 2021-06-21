@@ -62,6 +62,16 @@ public abstract class JdbcServiceImpl<T, I extends Serializable> implements Jdbc
     }
 
     @Override
+    public List<T> findAll(List<Sort> sorts) {
+        return null;
+    }
+
+    @Override
+    public List<T> findAll(Criteria criteria, List<Sort> sorts) {
+        return null;
+    }
+
+    @Override
     public List<T> findAll(int page, int pageSize, Criteria criteria) {
         return null;
     }
@@ -166,4 +176,16 @@ public abstract class JdbcServiceImpl<T, I extends Serializable> implements Jdbc
         }
         return PageRequest.of(page - 1, pageSize, org.springframework.data.domain.Sort.by(orders));
     }
+
+    public org.springframework.data.domain.Sort sort(List<Sort> sorts) {
+        List<org.springframework.data.domain.Sort.Order> orders = new ArrayList<>();
+        for (Sort sort : sorts) {
+            if (Boolean.TRUE.equals(sort.getKeyword().equals(Keyword.DESC)))
+                orders.add(org.springframework.data.domain.Sort.Order.desc(sort.getField()));
+            else
+                orders.add(org.springframework.data.domain.Sort.Order.asc(sort.getField()));
+        }
+        return org.springframework.data.domain.Sort.by(orders);
+    }
+
 }

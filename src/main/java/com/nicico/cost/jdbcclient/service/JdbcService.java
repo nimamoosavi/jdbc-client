@@ -136,11 +136,24 @@ public interface JdbcService<T, I extends Serializable> extends GeneralRepositor
     List<T> findAll();
 
     /**
+     * @return the List Of Entities
+     * @apiNote this method used SpringJpa
+     */
+    List<T> findAll(List<Sort> sorts);
+
+    /**
      * @param criteria is the criteria for find in where Clause
      * @return the List Of Entities
      * @apiNote this methode uses for Fetch All Data
      */
     List<T> findAll(Criteria criteria);
+
+    /**
+     * @param criteria is the criteria for find in where Clause
+     * @return the List Of Entities
+     * @apiNote this methode uses for Fetch All Data
+     */
+    List<T> findAll(Criteria criteria,List<Sort> sorts);
 
     /**
      * @param page     the page number that you must fetch it
