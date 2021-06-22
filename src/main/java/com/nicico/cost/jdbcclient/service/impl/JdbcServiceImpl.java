@@ -3,21 +3,28 @@ package com.nicico.cost.jdbcclient.service.impl;
 import com.nicico.cost.framework.packages.crud.view.Criteria;
 import com.nicico.cost.framework.packages.crud.view.Keyword;
 import com.nicico.cost.framework.packages.crud.view.Sort;
+import com.nicico.cost.framework.service.exception.ApplicationException;
+import com.nicico.cost.framework.service.exception.ServiceException;
 import com.nicico.cost.jdbcclient.repository.JdbcRepository;
 import com.nicico.cost.jdbcclient.service.JdbcService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
+import javax.persistence.EntityManagerFactory;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+
+import static com.nicico.cost.framework.enums.exception.ExceptionEnum.NOT_SAVE;
+import static com.nicico.cost.framework.enums.exception.ExceptionEnum.NOT_UPDATE;
 
 /**
  * @param <T> is the BaseObject class
@@ -31,14 +38,27 @@ public abstract class JdbcServiceImpl<T, I extends Serializable> implements Jdbc
     @Autowired
     NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
+    @Autowired
+    private EntityManagerFactory entityManagerFactory;
+    @Autowired
+    ApplicationException<ServiceException> applicationException;
+
     @Override
     public T save(T t) {
-        return jdbcRepository.save(t);
+        Object id = entityManagerFactory.getPersistenceUnitUtil().getIdentifier(t);
+        if (id == null)
+            return jdbcRepository.save(t);
+        else
+            throw applicationException.createApplicationException(NOT_SAVE, HttpStatus.BAD_REQUEST);
     }
 
     @Override
     public T update(T t) {
-        return jdbcRepository.save(t);
+        Object id = entityManagerFactory.getPersistenceUnitUtil().getIdentifier(t);
+        if (id != null)
+            return jdbcRepository.save(t);
+        else
+            throw applicationException.createApplicationException(NOT_UPDATE, HttpStatus.BAD_REQUEST);
     }
 
     @Override
