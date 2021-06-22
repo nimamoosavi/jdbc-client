@@ -67,19 +67,10 @@ public abstract class JdbcServiceImpl<T, I extends Serializable> implements Jdbc
     }
 
     @Override
-    public List<T> findAll(Criteria criteria, List<Sort> sorts) {
-        return null;
-    }
-
-    @Override
     public List<T> findAll(int page, int pageSize, Criteria criteria) {
         return null;
     }
 
-    @Override
-    public List<T> findAll(int page, int pageSize, List<Sort> orders, Criteria criteria) {
-        return null;
-    }
 
     @Override
     public long count(Criteria criteria) {
