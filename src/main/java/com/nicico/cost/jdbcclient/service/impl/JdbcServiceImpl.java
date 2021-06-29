@@ -1,5 +1,6 @@
 package com.nicico.cost.jdbcclient.service.impl;
 
+import com.nicico.cost.framework.domain.dto.PageDTO;
 import com.nicico.cost.framework.packages.crud.view.Criteria;
 import com.nicico.cost.framework.packages.crud.view.Keyword;
 import com.nicico.cost.framework.packages.crud.view.Sort;
@@ -87,7 +88,7 @@ public abstract class JdbcServiceImpl<T, I extends Serializable> implements Jdbc
     }
 
     @Override
-    public List<T> findAll(int page, int pageSize, Criteria criteria) {
+    public PageDTO<List<T>> findAll(int page, int pageSize, Criteria criteria) {
         return null;
     }
 
@@ -98,17 +99,17 @@ public abstract class JdbcServiceImpl<T, I extends Serializable> implements Jdbc
     }
 
     @Override
-    public List<T> findAll(int page, int pageSize) {
+    public PageDTO<List<T>> findAll(int page, int pageSize) {
         Pageable pageable = pagination(page, pageSize);
         Page<T> all = jdbcRepository.findAll(pageable);
-        return all.toList();
+        return convertPageToPageDTO(all);
     }
 
     @Override
-    public List<T> findAll(int page, int pageSize, List<Sort> sorts) {
+    public PageDTO<List<T>> findAll(int page, int pageSize, List<Sort> sorts) {
         Pageable pageable = pagination(page, pageSize, sorts);
         Page<T> all = jdbcRepository.findAll(pageable);
-        return all.toList();
+        return convertPageToPageDTO(all);
     }
 
 
@@ -197,6 +198,13 @@ public abstract class JdbcServiceImpl<T, I extends Serializable> implements Jdbc
                 orders.add(org.springframework.data.domain.Sort.Order.asc(sort.getField()));
         }
         return org.springframework.data.domain.Sort.by(orders);
+    }
+
+    public PageDTO<List<T>> convertPageToPageDTO(Page<T> page) {
+        return PageDTO.<List<T>>builder().pageSize(page.getSize())
+                .totalPages(page.getTotalPages())
+                .totalElement(page.getTotalElements())
+                .object(page.toList()).build();
     }
 
 }

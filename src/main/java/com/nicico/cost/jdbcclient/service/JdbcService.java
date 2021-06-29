@@ -1,6 +1,7 @@
 package com.nicico.cost.jdbcclient.service;
 
 import com.nicico.cost.crud.repository.GeneralRepository;
+import com.nicico.cost.framework.domain.dto.PageDTO;
 import com.nicico.cost.framework.packages.crud.view.Criteria;
 import com.nicico.cost.framework.packages.crud.view.Sort;
 import com.nicico.cost.framework.packages.jdbc.Jdbc;
@@ -154,7 +155,7 @@ public interface JdbcService<T, I extends Serializable> extends GeneralRepositor
      * @param pageSize the page Size of that you need to split Data
      * @apiNote this method used SpringJpa
      */
-    List<T> findAll(int page, int pageSize);
+    PageDTO<List<T>> findAll(int page, int pageSize);
 
     /**
      * @param page     the page number that you must fetch it
@@ -162,7 +163,7 @@ public interface JdbcService<T, I extends Serializable> extends GeneralRepositor
      * @param pageSize the page Size of that you need to split Data
      * @return the Optional List Of Entity from Response Of Data Base
      */
-    List<T> findAll(int page, int pageSize, Criteria criteria);
+    PageDTO<List<T>> findAll(int page, int pageSize, Criteria criteria);
 
     /**
      * @param page     the page number that you must fetch it
@@ -171,7 +172,7 @@ public interface JdbcService<T, I extends Serializable> extends GeneralRepositor
      * @return the List Of Entity from Response Of Data Base
      * @apiNote this method used SpringJpa
      */
-    List<T> findAll(int page, int pageSize, List<Sort> sorts);
+    PageDTO<List<T>> findAll(int page, int pageSize, List<Sort> sorts);
 
     /**
      * @return the Number Of data
