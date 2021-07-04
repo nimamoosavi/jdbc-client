@@ -7,11 +7,13 @@ import com.nicico.cost.framework.packages.crud.view.Sort;
 import com.nicico.cost.framework.service.exception.ApplicationException;
 import com.nicico.cost.framework.service.exception.ServiceException;
 import com.nicico.cost.jdbcclient.repository.JdbcRepository;
+import com.nicico.cost.jdbcclient.repository.filter.SpecificationsBuilder;
 import com.nicico.cost.jdbcclient.service.JdbcService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.HttpStatus;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -43,6 +45,9 @@ public abstract class JdbcServiceImpl<T, I extends Serializable> implements Jdbc
     private EntityManagerFactory entityManagerFactory;
     @Autowired
     ApplicationException<ServiceException> applicationException;
+
+    @Autowired
+    SpecificationsBuilder<T> specificationsBuilder;
 
     @Override
     public T save(T t) {
@@ -79,7 +84,8 @@ public abstract class JdbcServiceImpl<T, I extends Serializable> implements Jdbc
 
     @Override
     public List<T> findAll(Criteria criteria) {
-        return null;
+        Specification specification = specificationsBuilder.build(criteria);
+        return jdbcRepository.findAll(specification);
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.nicico.cost.jdbcclient.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
 import java.io.Serializable;
 
@@ -12,5 +13,5 @@ import java.io.Serializable;
  * Spring Data Query Method and Used It in your Interface
  * Good Luck
  */
-public interface JdbcRepository<T, I extends Serializable> extends JpaRepository<T, I> {
+public interface JdbcRepository<T, I extends Serializable> extends JpaRepository<T, I> , JpaSpecificationExecutor<T> {
 }
