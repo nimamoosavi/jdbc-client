@@ -38,6 +38,7 @@ public abstract class JdbcServiceImpl<T, I extends Serializable> implements Jdbc
 
     @Autowired
     JdbcRepository<T, I> jdbcRepository;
+
     @Autowired
     NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
@@ -84,7 +85,7 @@ public abstract class JdbcServiceImpl<T, I extends Serializable> implements Jdbc
 
     @Override
     public List<T> findAll(Criteria criteria) {
-        Specification specification = specificationsBuilder.build(criteria);
+        Specification<T> specification = specificationsBuilder.build(criteria);
         return jdbcRepository.findAll(specification);
     }
 
@@ -95,7 +96,10 @@ public abstract class JdbcServiceImpl<T, I extends Serializable> implements Jdbc
 
     @Override
     public PageDTO<List<T>> findAll(int page, int pageSize, Criteria criteria) {
-        return null;
+        Specification<T> specification = specificationsBuilder.build(criteria);
+        Pageable pageable = pagination(page, pageSize, criteria.getSorts());
+        Page<T> all = jdbcRepository.findAll(specification,pageable);
+        return convertPageToPageDTO(all);
     }
 
 
