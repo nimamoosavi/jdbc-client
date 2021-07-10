@@ -1,6 +1,5 @@
-package com.nicico.cost.jdbcclient.service;
+package com.nicico.cost.jdbcclient.repository;
 
-import com.nicico.cost.jdbcclient.repository.JdbcRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;

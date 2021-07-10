@@ -2,8 +2,7 @@ package com.nicico.cost.jdbcclient.service;
 
 import com.nicico.cost.crud.repository.GeneralRepository;
 import com.nicico.cost.framework.domain.dto.PageDTO;
-import com.nicico.cost.framework.packages.crud.view.Criteria;
-import com.nicico.cost.framework.packages.crud.view.Sort;
+import com.nicico.cost.framework.packages.crud.view.Query;
 import com.nicico.cost.framework.packages.jdbc.Jdbc;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -136,18 +135,13 @@ public interface JdbcService<T, I extends Serializable> extends GeneralRepositor
      */
     List<T> findAll();
 
-    /**
-     * @return the List Of Entities
-     * @apiNote this method used SpringJpa
-     */
-    List<T> findAll(List<Sort> sorts);
 
     /**
-     * @param criteria is the criteria for find in where Clause
+     * @param query is the criteria for find in where Clause
      * @return the List Of Entities
      * @apiNote this methode uses for Fetch All Data
      */
-    List<T> findAll(Criteria criteria);
+    List<T> findAll(Query query);
 
 
     /**
@@ -159,20 +153,12 @@ public interface JdbcService<T, I extends Serializable> extends GeneralRepositor
 
     /**
      * @param page     the page number that you must fetch it
-     * @param criteria is the criteria for find in where Clause
+     * @param query    is the criteria for find in where Clause
      * @param pageSize the page Size of that you need to split Data
      * @return the Optional List Of Entity from Response Of Data Base
      */
-    PageDTO<List<T>> findAll(int page, int pageSize, Criteria criteria);
+    PageDTO<List<T>> findAll(int page, int pageSize, Query query);
 
-    /**
-     * @param page     the page number that you must fetch it
-     * @param pageSize the page Size of that you need to split Data
-     * @param sorts   is the list of fields and your direction such as Asc and Desc for Sorting
-     * @return the List Of Entity from Response Of Data Base
-     * @apiNote this method used SpringJpa
-     */
-    PageDTO<List<T>> findAll(int page, int pageSize, List<Sort> sorts);
 
     /**
      * @return the Number Of data
@@ -181,11 +167,11 @@ public interface JdbcService<T, I extends Serializable> extends GeneralRepositor
     long count();
 
     /**
-     * @param criteria is the criteria for find in where Clause
+     * @param query is the criteria for find in where Clause
      * @return the Number Of data
      * @apiNote method used for get the count Of Data
      */
-    long count(Criteria criteria);
+    long count(Query query);
 
     /**
      * @param id is the incrementalId of Object that you need too remove it from Data Base

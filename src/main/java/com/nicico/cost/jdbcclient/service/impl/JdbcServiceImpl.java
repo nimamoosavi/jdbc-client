@@ -1,8 +1,8 @@
 package com.nicico.cost.jdbcclient.service.impl;
 
 import com.nicico.cost.framework.domain.dto.PageDTO;
-import com.nicico.cost.framework.packages.crud.view.Criteria;
 import com.nicico.cost.framework.packages.crud.view.Keyword;
+import com.nicico.cost.framework.packages.crud.view.Query;
 import com.nicico.cost.framework.packages.crud.view.Sort;
 import com.nicico.cost.framework.service.exception.ApplicationException;
 import com.nicico.cost.framework.service.exception.ServiceException;
@@ -84,40 +84,54 @@ public abstract class JdbcServiceImpl<T, I extends Serializable> implements Jdbc
     }
 
     @Override
-    public List<T> findAll(Criteria criteria) {
-        Specification<T> specification = specificationsBuilder.build(criteria);
-        return jdbcRepository.findAll(specification);
+    public List<T> findAll(Query query) {
+        if (query.getSorts() != null && Boolean.FALSE.equals(query.getSorts().isEmpty()) && query.getCriteria() != null) {
+            Specification<T> specification = specificationsBuilder.build(query.getCriteria());
+            org.springframework.data.domain.Sort sort = sort(query.getSorts());
+            return jdbcRepository.findAll(specification, sort);
+        } else if (query.getSorts() != null && Boolean.FALSE.equals(query.getSorts().isEmpty())) {
+            org.springframework.data.domain.Sort sort = sort(query.getSorts());
+            return jdbcRepository.findAll(sort);
+        } else if (query.getCriteria() != null) {
+            Specification<T> specification = specificationsBuilder.build(query.getCriteria());
+            return jdbcRepository.findAll(specification);
+        } else
+            return jdbcRepository.findAll();
     }
 
     @Override
-    public List<T> findAll(List<Sort> sorts) {
-        return null;
+    public PageDTO<List<T>> findAll(int page, int pageSize, Query query) {
+        if (query.getSorts() != null && Boolean.FALSE.equals(query.getSorts().isEmpty()) && query.getCriteria() != null) {
+            Specification<T> specification = specificationsBuilder.build(query.getCriteria());
+            Pageable pageable = pagination(page, pageSize, query.getSorts());
+            Page<T> all = jdbcRepository.findAll(specification, pageable);
+            return convertPageToPageDTO(all);
+        } else if (query.getSorts() != null && Boolean.FALSE.equals(query.getSorts().isEmpty())) {
+            Pageable pageable = pagination(page, pageSize, query.getSorts());
+            Page<T> all = jdbcRepository.findAll(pageable);
+            return convertPageToPageDTO(all);
+        } else if (query.getCriteria() != null) {
+            Specification<T> specification = specificationsBuilder.build(query.getCriteria());
+            Pageable pagination = pagination(page, pageSize);
+            Page<T> all = jdbcRepository.findAll(specification, pagination);
+            return convertPageToPageDTO(all);
+        } else {
+            Pageable pagination = pagination(page, pageSize);
+            Page<T> all = jdbcRepository.findAll(pagination);
+            return convertPageToPageDTO(all);
+        }
     }
 
-    @Override
-    public PageDTO<List<T>> findAll(int page, int pageSize, Criteria criteria) {
-        Specification<T> specification = specificationsBuilder.build(criteria);
-        Pageable pageable = pagination(page, pageSize, criteria.getSorts());
-        Page<T> all = jdbcRepository.findAll(specification,pageable);
-        return convertPageToPageDTO(all);
-    }
-
 
     @Override
-    public long count(Criteria criteria) {
-        return 0;
+    public long count(Query query) {
+        Specification<T> specification = specificationsBuilder.build(query.getCriteria());
+        return jdbcRepository.count(specification);
     }
 
     @Override
     public PageDTO<List<T>> findAll(int page, int pageSize) {
         Pageable pageable = pagination(page, pageSize);
-        Page<T> all = jdbcRepository.findAll(pageable);
-        return convertPageToPageDTO(all);
-    }
-
-    @Override
-    public PageDTO<List<T>> findAll(int page, int pageSize, List<Sort> sorts) {
-        Pageable pageable = pagination(page, pageSize, sorts);
         Page<T> all = jdbcRepository.findAll(pageable);
         return convertPageToPageDTO(all);
     }

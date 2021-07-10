@@ -8,7 +8,9 @@ import lombok.AllArgsConstructor;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
+
 import java.util.Objects;
+
 import static com.nicico.cost.framework.enums.exception.ExceptionEnum.NOT_SAVE;
 
 
@@ -21,7 +23,6 @@ public class SpecificationsBuilder<T> {
     public Specification<T> build(Criteria criteria) {
         if (criteria.getCriteriaChain() != null && !criteria.getCriteriaChain().isEmpty()) {
             Specification<T> firstCriteria = Specification.where(build(criteria.getCriteriaChain().get(0)));
-
             for (int i = 1; i < criteria.getCriteriaChain().size(); i++) {
                 if (Objects.isNull(firstCriteria))
                     throw applicationException.createApplicationException(NOT_SAVE, HttpStatus.BAD_REQUEST);

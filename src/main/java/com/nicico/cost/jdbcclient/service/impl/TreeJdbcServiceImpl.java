@@ -2,8 +2,8 @@ package com.nicico.cost.jdbcclient.service.impl;
 
 import com.nicico.cost.framework.domain.dto.PageDTO;
 import com.nicico.cost.framework.packages.crud.view.Sort;
-import com.nicico.cost.crud.repository.TreeRepository;
-import com.nicico.cost.jdbcclient.service.TreeJdbcRepository;
+import com.nicico.cost.jdbcclient.repository.TreeJdbcRepository;
+import com.nicico.cost.jdbcclient.service.TreeJdbcService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -11,7 +11,7 @@ import org.springframework.data.domain.Pageable;
 import java.io.Serializable;
 import java.util.List;
 
-public abstract class TreeJdbcServiceImpl<T, I extends Serializable> extends JdbcServiceImpl<T, I> implements TreeRepository<T, I> {
+public abstract class TreeJdbcServiceImpl<T, I extends Serializable> extends JdbcServiceImpl<T, I> implements TreeJdbcService<T, I> {
 
 
     @Autowired
