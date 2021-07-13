@@ -39,16 +39,22 @@ public class SpecificationFactory<T> {
     }
 
     private Specification<T> getEqualsSpecification(Criteria criteria) {
-        return (root, query, builder) ->
-                builder.equal(root.get(criteria.getFieldName()), criteria.getValue());
+        return (root, query, builder) -> {
+            if(criteria.getFieldName().contains(".")){
+                String[] arrStr = criteria.getFieldName().split("\\.");
+                Join join = root.join(arrStr[0]);
+                return builder.equal(join.get(arrStr[1]),criteria.getValue());
+            }
+            return builder.equal(root.get(criteria.getFieldName()), criteria.getValue());
+        };
     }
 
     private Specification<T> getNotEqualsSpecification(Criteria criteria) {
         return (root, query, builder) -> {
             if(criteria.getFieldName().contains(".")){
-                String[] arrStr = criteria.getFieldName().split(".");
+                String[] arrStr = criteria.getFieldName().split("\\.");
                 Join join = root.join(arrStr[0]);
-                return builder.equal(join.get(arrStr[1]),criteria.getValue());
+                return builder.notEqual(join.get(arrStr[1]),criteria.getValue());
             }
            return builder.notEqual(root.get(criteria.getFieldName()), criteria.getValue());
         };
