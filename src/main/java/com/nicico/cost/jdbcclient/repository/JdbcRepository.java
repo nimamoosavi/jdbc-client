@@ -13,5 +13,5 @@ import java.io.Serializable;
  * Spring Data Query Method and Used It in your Interface
  * Good Luck
  */
-public interface JdbcRepository<T, I extends Serializable> extends JpaRepository<T, I> , JpaSpecificationExecutor<T> {
+public interface JdbcRepository<T, I extends Serializable> extends JpaRepository<T, I>, JpaSpecificationExecutor<T> {
 }
