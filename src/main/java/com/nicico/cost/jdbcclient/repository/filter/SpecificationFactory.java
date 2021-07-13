@@ -5,6 +5,7 @@ import com.nicico.cost.framework.packages.crud.view.Operator;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
+import javax.persistence.criteria.Join;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
@@ -43,8 +44,14 @@ public class SpecificationFactory<T> {
     }
 
     private Specification<T> getNotEqualsSpecification(Criteria criteria) {
-        return (root, query, builder) ->
-                builder.notEqual(root.get(criteria.getFieldName()),  criteria.getValue());
+        return (root, query, builder) -> {
+            if(criteria.getFieldName().contains(".")){
+                String[] arrStr = criteria.getFieldName().split(".");
+                Join join = root.join(arrStr[0]);
+                return builder.equal(join.get(arrStr[1]),criteria.getValue());
+            }
+           return builder.notEqual(root.get(criteria.getFieldName()), criteria.getValue());
+        };
     }
     private Specification<T> getLessThanSpecification(Criteria criteria) {
         return (root, query, builder) ->
