@@ -13,7 +13,6 @@ import java.util.Map;
 import java.util.function.Function;
 
 /**
- *
  * @param <T> is the Type of Object that you can return in Specification
  * @author bagher moosavi
  */
@@ -43,7 +42,6 @@ public class SpecificationFactoryImpl<T> implements SpecificationFactory<T> {
     }
 
     /**
-     *
      * @param criteria criteria is the input object that you need to convert to Specification Object
      * @return Specification<T> for use in jpa Query
      * @apiNote this method used for call all implementation of where clause and return true specification
@@ -53,10 +51,9 @@ public class SpecificationFactoryImpl<T> implements SpecificationFactory<T> {
     }
 
     /**
-     *
      * @param criteria is the input object that you need to convert to Specification Object
-     * @apiNote this method used for Equals where Clause in query
      * @return Specification<T> for use in jpa Query
+     * @apiNote this method used for Equals where Clause in query
      */
     private Specification<T> getEqualsSpecification(Criteria criteria) {
         return (root, query, builder) -> {
@@ -70,10 +67,9 @@ public class SpecificationFactoryImpl<T> implements SpecificationFactory<T> {
     }
 
     /**
-     *
      * @param criteria is the input object that you need to convert to Specification Object
-     * @apiNote this method used for Not Equals where Clause in query
      * @return Specification<T> for use in jpa Query
+     * @apiNote this method used for Not Equals where Clause in query
      */
     private Specification<T> getNotEqualsSpecification(Criteria criteria) {
         return (root, query, builder) -> {
@@ -87,10 +83,9 @@ public class SpecificationFactoryImpl<T> implements SpecificationFactory<T> {
     }
 
     /**
-     *
      * @param criteria is the input object that you need to convert to Specification Object
-     * @apiNote this method used for LessThan where Clause in query
      * @return Specification<T> for use in jpa Query
+     * @apiNote this method used for LessThan where Clause in query
      */
     @SuppressWarnings("unchecked")
     private Specification<T> getLessThanSpecification(Criteria criteria) {
@@ -99,10 +94,9 @@ public class SpecificationFactoryImpl<T> implements SpecificationFactory<T> {
     }
 
     /**
-     *
      * @param criteria is the input object that you need to convert to Specification Object
-     * @apiNote this method used for GreaterThan where Clause in query
      * @return Specification<T> for use in jpa Query
+     * @apiNote this method used for GreaterThan where Clause in query
      */
     @SuppressWarnings("unchecked")
     private Specification<T> getGreaterThanSpecification(Criteria criteria) {
@@ -111,10 +105,9 @@ public class SpecificationFactoryImpl<T> implements SpecificationFactory<T> {
     }
 
     /**
-     *
      * @param criteria is the input object that you need to convert to Specification Object
-     * @apiNote this method used for GreaterOrEquals where Clause in query
      * @return Specification<T> for use in jpa Query
+     * @apiNote this method used for GreaterOrEquals where Clause in query
      */
     @SuppressWarnings("unchecked")
     private Specification<T> getGreaterOrEqualsSpecification(Criteria criteria) {
@@ -123,10 +116,9 @@ public class SpecificationFactoryImpl<T> implements SpecificationFactory<T> {
     }
 
     /**
-     *
      * @param criteria is the input object that you need to convert to Specification Object
-     * @apiNote this method used for LessOrEquals where Clause in query
      * @return Specification<T> for use in jpa Query
+     * @apiNote this method used for LessOrEquals where Clause in query
      */
     @SuppressWarnings("unchecked")
     private Specification<T> getLessOrEqualsSpecification(Criteria criteria) {
@@ -135,10 +127,9 @@ public class SpecificationFactoryImpl<T> implements SpecificationFactory<T> {
     }
 
     /**
-     *
      * @param criteria is the input object that you need to convert to Specification Object
-     * @apiNote this method used for Contains where Clause in query
      * @return Specification<T> for use in jpa Query
+     * @apiNote this method used for Contains where Clause in query
      */
     private Specification<T> getContainsSpecification(Criteria criteria) {
         return (root, query, builder) ->
@@ -146,10 +137,9 @@ public class SpecificationFactoryImpl<T> implements SpecificationFactory<T> {
     }
 
     /**
-     *
      * @param criteria is the input object that you need to convert to Specification Object
-     * @apiNote this method used for StartWith where Clause in query
      * @return Specification<T> for use in jpa Query
+     * @apiNote this method used for StartWith where Clause in query
      */
     private Specification<T> getStartWithSpecification(Criteria criteria) {
         return (root, query, builder) ->
@@ -157,10 +147,9 @@ public class SpecificationFactoryImpl<T> implements SpecificationFactory<T> {
     }
 
     /**
-     *
      * @param criteria is the input object that you need to convert to Specification Object
-     * @apiNote this method used for EndWith where Clause in query
      * @return Specification<T> for use in jpa Query
+     * @apiNote this method used for EndWith where Clause in query
      */
     private Specification<T> getEndWithSpecification(Criteria criteria) {
         return (root, query, builder) ->
@@ -168,10 +157,9 @@ public class SpecificationFactoryImpl<T> implements SpecificationFactory<T> {
     }
 
     /**
-     *
      * @param criteria is the input object that you need to convert to Specification Object
-     * @apiNote this method used for NotContains where Clause in query
      * @return Specification<T> for use in jpa Query
+     * @apiNote this method used for NotContains where Clause in query
      */
     private Specification<T> getNotContainsSpecification(Criteria criteria) {
         return (root, query, builder) ->
@@ -179,10 +167,9 @@ public class SpecificationFactoryImpl<T> implements SpecificationFactory<T> {
     }
 
     /**
-     *
      * @param criteria is the input object that you need to convert to Specification Object
-     * @apiNote this method used for NotStartWith where Clause in query
      * @return Specification<T> for use in jpa Query
+     * @apiNote this method used for NotStartWith where Clause in query
      */
     private Specification<T> getNotStartWithSpecification(Criteria criteria) {
         return (root, query, builder) ->
@@ -190,10 +177,9 @@ public class SpecificationFactoryImpl<T> implements SpecificationFactory<T> {
     }
 
     /**
-     *
      * @param criteria is the input object that you need to convert to Specification Object
-     * @apiNote this method used for NotEndWith where Clause in query
      * @return Specification<T> for use in jpa Query
+     * @apiNote this method used for NotEndWith where Clause in query
      */
     private Specification<T> getNotEndWithSpecification(Criteria criteria) {
         return (root, query, builder) ->
@@ -201,10 +187,9 @@ public class SpecificationFactoryImpl<T> implements SpecificationFactory<T> {
     }
 
     /**
-     *
      * @param criteria is the input object that you need to convert to Specification Object
-     * @apiNote this method used for Blank where Clause in query
      * @return Specification<T> for use in jpa Query
+     * @apiNote this method used for Blank where Clause in query
      */
     private Specification<T> getBlankSpecification(Criteria criteria) {
         return (root, query, builder) ->
@@ -212,10 +197,9 @@ public class SpecificationFactoryImpl<T> implements SpecificationFactory<T> {
     }
 
     /**
-     *
      * @param criteria is the input object that you need to convert to Specification Object
-     * @apiNote this method used for NotBlank where Clause in query
      * @return Specification<T> for use in jpa Query
+     * @apiNote this method used for NotBlank where Clause in query
      */
     private Specification<T> getNotBlankSpecification(Criteria criteria) {
         return (root, query, builder) ->
@@ -223,10 +207,9 @@ public class SpecificationFactoryImpl<T> implements SpecificationFactory<T> {
     }
 
     /**
-     *
      * @param criteria is the input object that you need to convert to Specification Object
-     * @apiNote this method used for Null where Clause in query
      * @return Specification<T> for use in jpa Query
+     * @apiNote this method used for Null where Clause in query
      */
     private Specification<T> getNullSpecification(Criteria criteria) {
         return (root, query, builder) ->
@@ -234,10 +217,9 @@ public class SpecificationFactoryImpl<T> implements SpecificationFactory<T> {
     }
 
     /**
-     *
      * @param criteria is the input object that you need to convert to Specification Object
-     * @apiNote this method used for NotNull where Clause in query
      * @return Specification<T> for use in jpa Query
+     * @apiNote this method used for NotNull where Clause in query
      */
     private Specification<T> getNotNullSpecification(Criteria criteria) {
         return (root, query, builder) ->
