@@ -1,6 +1,8 @@
 package com.nicico.cost.jdbcclient.service.impl;
 
 import com.nicico.cost.framework.domain.dto.PageDTO;
+import com.nicico.cost.framework.packages.crud.view.Criteria;
+import com.nicico.cost.framework.packages.crud.view.Operator;
 import com.nicico.cost.framework.packages.crud.view.Query;
 import com.nicico.cost.jdbcclient.repository.TreeJdbcRepository;
 import com.nicico.cost.jdbcclient.service.TreeJdbcService;
@@ -14,6 +16,7 @@ import java.util.List;
 
 public abstract class TreeJdbcServiceImpl<T, I extends Serializable> extends JdbcServiceImpl<T, I> implements TreeJdbcService<T, I> {
 
+    public static final String PARENT_ID = "parentId";
 
     @Autowired
     private TreeJdbcRepository<T, I> treeJdbcRepository;
@@ -32,15 +35,21 @@ public abstract class TreeJdbcServiceImpl<T, I extends Serializable> extends Jdb
     @Override
     public List<T> findAllParent(Query query) {
         if (query.getSorts() != null && Boolean.FALSE.equals(query.getSorts().isEmpty()) && query.getCriteria() != null) {
-            Specification<T> specification = specificationsBuilder.build(query.getCriteria());
+            Criteria parentIdCriteria = Criteria.builder().fieldName(PARENT_ID).operator(Operator.NULL).build();
+            Criteria combineCriteria = Criteria.combineCriteria(query.getCriteria(), parentIdCriteria, Operator.AND);
+            Specification<T> specification = specificationsBuilder.build(combineCriteria);
             org.springframework.data.domain.Sort sort = sort(query.getSorts());
-            return treeJdbcRepository.findAllByParentIdIsNull(specification, sort);
+            return treeJdbcRepository.findAll(specification, sort);
         } else if (query.getSorts() != null && Boolean.FALSE.equals(query.getSorts().isEmpty())) {
             org.springframework.data.domain.Sort sort = sort(query.getSorts());
-            return treeJdbcRepository.findAllByParentIdIsNull(sort);
+            Criteria parentIdCriteria = Criteria.builder().fieldName(PARENT_ID).operator(Operator.NULL).build();
+            Specification<T> specification = specificationsBuilder.build(parentIdCriteria);
+            return treeJdbcRepository.findAll(specification, sort);
         } else if (query.getCriteria() != null) {
-            Specification<T> specification = specificationsBuilder.build(query.getCriteria());
-            return treeJdbcRepository.findAllByParentIdIsNull(specification);
+            Criteria parentIdCriteria = Criteria.builder().fieldName(PARENT_ID).operator(Operator.NULL).build();
+            Criteria combineCriteria = Criteria.combineCriteria(query.getCriteria(), parentIdCriteria, Operator.AND);
+            Specification<T> specification = specificationsBuilder.build(combineCriteria);
+            return treeJdbcRepository.findAll(specification);
         } else
             return treeJdbcRepository.findAllByParentIdIsNull();
     }
@@ -48,18 +57,24 @@ public abstract class TreeJdbcServiceImpl<T, I extends Serializable> extends Jdb
     @Override
     public PageDTO<List<T>> findAllParent(int page, int pageSize, Query query) {
         if (query.getSorts() != null && Boolean.FALSE.equals(query.getSorts().isEmpty()) && query.getCriteria() != null) {
-            Specification<T> specification = specificationsBuilder.build(query.getCriteria());
+            Criteria parentIdCriteria = Criteria.builder().fieldName(PARENT_ID).operator(Operator.NULL).build();
+            Criteria combineCriteria = Criteria.combineCriteria(query.getCriteria(), parentIdCriteria, Operator.AND);
+            Specification<T> specification = specificationsBuilder.build(combineCriteria);
             Pageable pageable = pagination(page, pageSize, query.getSorts());
-            Page<T> all = treeJdbcRepository.findAllByParentIdIsNull(specification, pageable);
+            Page<T> all = treeJdbcRepository.findAll(specification, pageable);
             return convertPageToPageDTO(all);
         } else if (query.getSorts() != null && Boolean.FALSE.equals(query.getSorts().isEmpty())) {
             Pageable pageable = pagination(page, pageSize, query.getSorts());
-            Page<T> all = treeJdbcRepository.findAllByParentIdIsNull(pageable);
+            Criteria parentIdCriteria = Criteria.builder().fieldName(PARENT_ID).operator(Operator.NULL).build();
+            Specification<T> specification = specificationsBuilder.build(parentIdCriteria);
+            Page<T> all = treeJdbcRepository.findAll(specification,pageable);
             return convertPageToPageDTO(all);
         } else if (query.getCriteria() != null) {
-            Specification<T> specification = specificationsBuilder.build(query.getCriteria());
+            Criteria parentIdCriteria = Criteria.builder().fieldName(PARENT_ID).operator(Operator.NULL).build();
+            Criteria combineCriteria = Criteria.combineCriteria(query.getCriteria(), parentIdCriteria, Operator.AND);
+            Specification<T> specification = specificationsBuilder.build(combineCriteria);
             Pageable pagination = pagination(page, pageSize);
-            Page<T> all = treeJdbcRepository.findAllByParentIdIsNull(specification, pagination);
+            Page<T> all = treeJdbcRepository.findAll(specification, pagination);
             return convertPageToPageDTO(all);
         } else {
             Pageable pagination = pagination(page, pageSize);
@@ -85,18 +100,22 @@ public abstract class TreeJdbcServiceImpl<T, I extends Serializable> extends Jdb
     @Override
     public PageDTO<List<T>> findAll(int page, int pageSize, Query query, I pid) {
         if (query.getSorts() != null && Boolean.FALSE.equals(query.getSorts().isEmpty()) && query.getCriteria() != null) {
-            Specification<T> specification = specificationsBuilder.build(query.getCriteria());
+            Criteria parentCriteria = Criteria.builder().fieldName(PARENT_ID).operator(Operator.NULL).build();
+            Criteria combineCriteria = Criteria.combineCriteria(query.getCriteria(), parentCriteria, Operator.AND);
+            Specification<T> specification = specificationsBuilder.build(combineCriteria);
             Pageable pageable = pagination(page, pageSize, query.getSorts());
-            Page<T> all = treeJdbcRepository.findAllByParentId(pid, specification, pageable);
+            Page<T> all = treeJdbcRepository.findAll(specification, pageable);
             return convertPageToPageDTO(all);
         } else if (query.getSorts() != null && Boolean.FALSE.equals(query.getSorts().isEmpty())) {
             Pageable pageable = pagination(page, pageSize, query.getSorts());
             Page<T> all = treeJdbcRepository.findAllByParentId(pid, pageable);
             return convertPageToPageDTO(all);
         } else if (query.getCriteria() != null) {
-            Specification<T> specification = specificationsBuilder.build(query.getCriteria());
+            Criteria parentCriteria = Criteria.builder().fieldName(PARENT_ID).operator(Operator.NULL).build();
+            Criteria combineCriteria = Criteria.combineCriteria(query.getCriteria(), parentCriteria, Operator.AND);
+            Specification<T> specification = specificationsBuilder.build(combineCriteria);
             Pageable pagination = pagination(page, pageSize);
-            Page<T> all = treeJdbcRepository.findAllByParentId(pid, specification, pagination);
+            Page<T> all = treeJdbcRepository.findAll(specification, pagination);
             return convertPageToPageDTO(all);
         } else {
             Pageable pagination = pagination(page, pageSize);
