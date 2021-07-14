@@ -1,5 +1,6 @@
 package com.nicico.cost.jdbcclient.service;
 
+import com.nicico.cost.crud.repository.TreeRepository;
 import com.nicico.cost.framework.domain.dto.PageDTO;
 import com.nicico.cost.framework.packages.crud.view.Query;
 
@@ -13,7 +14,7 @@ import java.util.List;
  * @apiNote this interface used for connect to table that create structure is parent child and you can fetch some data with pagination and Query and etc...
  * Good Luck
  */
-public interface TreeJdbcService<T, I extends Serializable> extends JdbcService<T, I> {
+public interface TreeJdbcService<T, I extends Serializable> extends JdbcService<T, I>, TreeRepository<T,I> {
 
     /**
      * find all root parent

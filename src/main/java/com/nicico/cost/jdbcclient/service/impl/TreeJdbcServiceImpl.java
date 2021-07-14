@@ -67,7 +67,7 @@ public abstract class TreeJdbcServiceImpl<T, I extends Serializable> extends Jdb
             Pageable pageable = pagination(page, pageSize, query.getSorts());
             Criteria parentIdCriteria = Criteria.builder().fieldName(PARENT_ID).operator(Operator.NULL).build();
             Specification<T> specification = specificationsBuilder.build(parentIdCriteria);
-            Page<T> all = treeJdbcRepository.findAll(specification,pageable);
+            Page<T> all = treeJdbcRepository.findAll(specification, pageable);
             return convertPageToPageDTO(all);
         } else if (query.getCriteria() != null) {
             Criteria parentIdCriteria = Criteria.builder().fieldName(PARENT_ID).operator(Operator.NULL).build();

@@ -1,9 +1,11 @@
-package com.nicico.cost.jdbcclient.repository.filter;
+package com.nicico.cost.jdbcclient.repository.filter.impl;
 
 import com.nicico.cost.framework.packages.crud.view.Criteria;
 import com.nicico.cost.framework.packages.crud.view.Operator;
 import com.nicico.cost.framework.service.exception.ApplicationException;
 import com.nicico.cost.framework.service.exception.ServiceException;
+import com.nicico.cost.jdbcclient.repository.filter.SpecificationBuilder;
+import com.nicico.cost.jdbcclient.repository.filter.SpecificationFactory;
 import lombok.AllArgsConstructor;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.HttpStatus;
@@ -16,7 +18,7 @@ import static com.nicico.cost.framework.enums.exception.ExceptionEnum.NOT_SAVE;
 
 @Component
 @AllArgsConstructor
-public class SpecificationsBuilder<T> {
+public class SpecificationsBuilderImpl<T> implements SpecificationBuilder<T> {
     private final SpecificationFactory<T> specificationFactory;
     private final ApplicationException<ServiceException> applicationException;
 

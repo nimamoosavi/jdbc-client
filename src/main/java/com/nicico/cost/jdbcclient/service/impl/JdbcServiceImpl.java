@@ -7,7 +7,7 @@ import com.nicico.cost.framework.packages.crud.view.Sort;
 import com.nicico.cost.framework.service.exception.ApplicationException;
 import com.nicico.cost.framework.service.exception.ServiceException;
 import com.nicico.cost.jdbcclient.repository.JdbcRepository;
-import com.nicico.cost.jdbcclient.repository.filter.SpecificationsBuilder;
+import com.nicico.cost.jdbcclient.repository.filter.SpecificationBuilder;
 import com.nicico.cost.jdbcclient.service.JdbcService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -48,7 +48,7 @@ public abstract class JdbcServiceImpl<T, I extends Serializable> implements Jdbc
     ApplicationException<ServiceException> applicationException;
 
     @Autowired
-    SpecificationsBuilder<T> specificationsBuilder;
+    SpecificationBuilder<T> specificationsBuilder;
 
     @Override
     public T save(T t) {
