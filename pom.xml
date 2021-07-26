@@ -8,11 +8,11 @@
         <version>2.3.0.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.nicico.cost</groupId>
+    <groupId>com.webold</groupId>
     <artifactId>Jdbc-client</artifactId>
     <version>1.0.1-Released</version>
     <name>Jdbc-client</name>
-    <description>Jdbc-client project for cost</description>
+    <description>Jdbc-client project for we bold project</description>
     <properties>
         <java.version>1.8</java.version>
     </properties>
@@ -43,12 +43,12 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>com.nicico.cost</groupId>
+            <groupId>com.webold</groupId>
             <artifactId>framework</artifactId>
             <version>1.0.1-Released</version>
         </dependency>
         <dependency>
-            <groupId>com.nicico.cost</groupId>
+            <groupId>com.webold</groupId>
             <artifactId>crud</artifactId>
             <version>1.0.1-Released</version>
         </dependency>
