@@ -1,11 +1,11 @@
-package com.nicico.cost.jdbcclient.repository.filter.impl;
+package com.webold.jdbcclient.repository.filter.impl;
 
-import com.nicico.cost.framework.packages.crud.view.Criteria;
-import com.nicico.cost.framework.packages.crud.view.Operator;
-import com.nicico.cost.framework.service.exception.ApplicationException;
-import com.nicico.cost.framework.service.exception.ServiceException;
-import com.nicico.cost.jdbcclient.repository.filter.SpecificationBuilder;
-import com.nicico.cost.jdbcclient.repository.filter.SpecificationFactory;
+import com.webold.framework.packages.crud.view.Criteria;
+import com.webold.framework.packages.crud.view.Operator;
+import com.webold.framework.service.exception.ApplicationException;
+import com.webold.framework.service.exception.ServiceException;
+import com.webold.jdbcclient.repository.filter.SpecificationBuilder;
+import com.webold.jdbcclient.repository.filter.SpecificationFactory;
 import lombok.AllArgsConstructor;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.HttpStatus;
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.Objects;
 
-import static com.nicico.cost.framework.enums.exception.ExceptionEnum.NOT_SAVE;
+import static com.webold.framework.enums.exception.ExceptionEnum.NOT_SAVE;
 
 
 @Component

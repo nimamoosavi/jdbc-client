@@ -1,9 +1,9 @@
-package com.nicico.cost.jdbcclient.service;
+package com.webold.jdbcclient.service;
 
-import com.nicico.cost.crud.repository.GeneralRepository;
-import com.nicico.cost.framework.domain.dto.PageDTO;
-import com.nicico.cost.framework.packages.crud.view.Query;
-import com.nicico.cost.framework.packages.jdbc.Jdbc;
+import com.webold.crud.repository.GeneralRepository;
+import com.webold.framework.domain.dto.PageDTO;
+import com.webold.framework.packages.crud.view.Query;
+import com.webold.framework.packages.jdbc.Jdbc;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;

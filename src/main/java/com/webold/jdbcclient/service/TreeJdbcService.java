@@ -1,8 +1,8 @@
-package com.nicico.cost.jdbcclient.service;
+package com.webold.jdbcclient.service;
 
-import com.nicico.cost.crud.repository.TreeRepository;
-import com.nicico.cost.framework.domain.dto.PageDTO;
-import com.nicico.cost.framework.packages.crud.view.Query;
+import com.webold.crud.repository.TreeRepository;
+import com.webold.framework.domain.dto.PageDTO;
+import com.webold.framework.packages.crud.view.Query;
 
 import java.io.Serializable;
 import java.util.List;

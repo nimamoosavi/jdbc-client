@@ -1,8 +1,8 @@
-package com.nicico.cost.jdbcclient.repository.filter.impl;
+package com.webold.jdbcclient.repository.filter.impl;
 
-import com.nicico.cost.framework.packages.crud.view.Criteria;
-import com.nicico.cost.framework.packages.crud.view.Operator;
-import com.nicico.cost.jdbcclient.repository.filter.SpecificationFactory;
+import com.webold.framework.packages.crud.view.Criteria;
+import com.webold.framework.packages.crud.view.Operator;
+import com.webold.jdbcclient.repository.filter.SpecificationFactory;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
 

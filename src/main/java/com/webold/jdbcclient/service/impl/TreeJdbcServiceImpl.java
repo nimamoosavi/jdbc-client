@@ -1,11 +1,11 @@
-package com.nicico.cost.jdbcclient.service.impl;
+package com.webold.jdbcclient.service.impl;
 
-import com.nicico.cost.framework.domain.dto.PageDTO;
-import com.nicico.cost.framework.packages.crud.view.Criteria;
-import com.nicico.cost.framework.packages.crud.view.Operator;
-import com.nicico.cost.framework.packages.crud.view.Query;
-import com.nicico.cost.jdbcclient.repository.TreeJdbcRepository;
-import com.nicico.cost.jdbcclient.service.TreeJdbcService;
+import com.webold.framework.domain.dto.PageDTO;
+import com.webold.framework.packages.crud.view.Criteria;
+import com.webold.framework.packages.crud.view.Operator;
+import com.webold.framework.packages.crud.view.Query;
+import com.webold.jdbcclient.repository.TreeJdbcRepository;
+import com.webold.jdbcclient.service.TreeJdbcService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

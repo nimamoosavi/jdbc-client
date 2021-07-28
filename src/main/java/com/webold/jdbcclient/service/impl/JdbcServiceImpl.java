@@ -1,14 +1,14 @@
-package com.nicico.cost.jdbcclient.service.impl;
+package com.webold.jdbcclient.service.impl;
 
-import com.nicico.cost.framework.domain.dto.PageDTO;
-import com.nicico.cost.framework.packages.crud.view.Keyword;
-import com.nicico.cost.framework.packages.crud.view.Query;
-import com.nicico.cost.framework.packages.crud.view.Sort;
-import com.nicico.cost.framework.service.exception.ApplicationException;
-import com.nicico.cost.framework.service.exception.ServiceException;
-import com.nicico.cost.jdbcclient.repository.JdbcRepository;
-import com.nicico.cost.jdbcclient.repository.filter.SpecificationBuilder;
-import com.nicico.cost.jdbcclient.service.JdbcService;
+import com.webold.framework.domain.dto.PageDTO;
+import com.webold.framework.packages.crud.view.Keyword;
+import com.webold.framework.packages.crud.view.Query;
+import com.webold.framework.packages.crud.view.Sort;
+import com.webold.framework.service.exception.ApplicationException;
+import com.webold.framework.service.exception.ServiceException;
+import com.webold.jdbcclient.repository.JdbcRepository;
+import com.webold.jdbcclient.repository.filter.SpecificationBuilder;
+import com.webold.jdbcclient.service.JdbcService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -26,8 +26,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-import static com.nicico.cost.framework.enums.exception.ExceptionEnum.NOT_SAVE;
-import static com.nicico.cost.framework.enums.exception.ExceptionEnum.NOT_UPDATE;
+import static com.webold.framework.enums.exception.ExceptionEnum.NOT_SAVE;
+import static com.webold.framework.enums.exception.ExceptionEnum.NOT_UPDATE;
 
 /**
  * @param <T> is the BaseObject class

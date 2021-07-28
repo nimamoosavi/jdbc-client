@@ -1,4 +1,4 @@
-package com.nicico.cost.jdbcclient.repository;
+package com.webold.jdbcclient.repository;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
