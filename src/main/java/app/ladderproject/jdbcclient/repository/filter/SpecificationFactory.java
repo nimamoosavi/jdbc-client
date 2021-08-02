@@ -1,4 +1,4 @@
-package com.webold.jdbcclient.repository.filter;
+package app.ladderproject.jdbcclient.repository.filter;
 
 import com.webold.framework.packages.crud.view.Criteria;
 import org.springframework.data.jpa.domain.Specification;

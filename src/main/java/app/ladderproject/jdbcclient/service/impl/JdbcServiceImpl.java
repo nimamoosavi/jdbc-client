@@ -1,14 +1,14 @@
-package com.webold.jdbcclient.service.impl;
+package app.ladderproject.jdbcclient.service.impl;
 
+import app.ladderproject.jdbcclient.repository.JdbcRepository;
+import app.ladderproject.jdbcclient.repository.filter.SpecificationBuilder;
 import com.webold.framework.domain.dto.PageDTO;
 import com.webold.framework.packages.crud.view.Keyword;
 import com.webold.framework.packages.crud.view.Query;
 import com.webold.framework.packages.crud.view.Sort;
 import com.webold.framework.service.exception.ApplicationException;
 import com.webold.framework.service.exception.ServiceException;
-import com.webold.jdbcclient.repository.JdbcRepository;
-import com.webold.jdbcclient.repository.filter.SpecificationBuilder;
-import com.webold.jdbcclient.service.JdbcService;
+import app.ladderproject.jdbcclient.service.JdbcService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;

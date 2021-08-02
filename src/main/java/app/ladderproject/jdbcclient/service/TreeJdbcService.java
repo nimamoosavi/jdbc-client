@@ -1,6 +1,6 @@
-package com.webold.jdbcclient.service;
+package app.ladderproject.jdbcclient.service;
 
-import com.webold.crud.repository.TreeRepository;
+import app.ladderproject.crud.repository.TreeRepository;
 import com.webold.framework.domain.dto.PageDTO;
 import com.webold.framework.packages.crud.view.Query;
 

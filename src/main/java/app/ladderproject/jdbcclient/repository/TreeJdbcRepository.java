@@ -1,4 +1,4 @@
-package com.webold.jdbcclient.repository;
+package app.ladderproject.jdbcclient.repository;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
