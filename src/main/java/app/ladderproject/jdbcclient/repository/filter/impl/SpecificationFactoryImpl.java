@@ -1,7 +1,7 @@
 package app.ladderproject.jdbcclient.repository.filter.impl;
 
-import com.webold.framework.packages.crud.view.Criteria;
-import com.webold.framework.packages.crud.view.Operator;
+import app.ladderproject.core.packages.crud.view.Criteria;
+import app.ladderproject.core.packages.crud.view.Operator;
 import app.ladderproject.jdbcclient.repository.filter.SpecificationFactory;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;

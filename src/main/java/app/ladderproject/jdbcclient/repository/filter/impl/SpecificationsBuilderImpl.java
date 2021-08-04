@@ -1,9 +1,9 @@
 package app.ladderproject.jdbcclient.repository.filter.impl;
 
-import com.webold.framework.packages.crud.view.Criteria;
-import com.webold.framework.packages.crud.view.Operator;
-import com.webold.framework.service.exception.ApplicationException;
-import com.webold.framework.service.exception.ServiceException;
+import app.ladderproject.core.packages.crud.view.Criteria;
+import app.ladderproject.core.packages.crud.view.Operator;
+import app.ladderproject.core.service.exception.ApplicationException;
+import app.ladderproject.core.service.exception.ServiceException;
 import app.ladderproject.jdbcclient.repository.filter.SpecificationBuilder;
 import app.ladderproject.jdbcclient.repository.filter.SpecificationFactory;
 import lombok.AllArgsConstructor;
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.Objects;
 
-import static com.webold.framework.enums.exception.ExceptionEnum.NOT_SAVE;
+import static app.ladderproject.core.enums.exception.ExceptionEnum.NOT_SAVE;
 
 
 @Component

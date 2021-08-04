@@ -1,8 +1,8 @@
 package app.ladderproject.jdbcclient.service;
 
+import app.ladderproject.core.domain.dto.PageDTO;
+import app.ladderproject.core.packages.crud.view.Query;
 import app.ladderproject.crud.repository.TreeRepository;
-import com.webold.framework.domain.dto.PageDTO;
-import com.webold.framework.packages.crud.view.Query;
 
 import java.io.Serializable;
 import java.util.List;
@@ -10,8 +10,8 @@ import java.util.List;
 /**
  *
  * @param <T> is the entity class
- * @param <I> is the type of data base Identity class such as Long,String, ...
- * @apiNote this interface used for connect to table that create structure is parent child and you can fetch some data with pagination and Query and etc...
+ * @param <I> is the type of database Identity class such as Long,String, ...
+ * @apiNote this interface used for connect to table that create structure is parent child, and you can fetch some data with pagination and Query etc...
  * Good Luck
  */
 public interface TreeJdbcService<T, I extends Serializable> extends JdbcService<T, I>, TreeRepository<T,I> {

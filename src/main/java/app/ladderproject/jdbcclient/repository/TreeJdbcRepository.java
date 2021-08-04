@@ -9,8 +9,8 @@ import java.util.List;
 /**
  *
  * @param <T> is the entity class
- * @param <I> is the type of data base Identity class such as Long,String, ...
- * @apiNote this methode used for create and get Parent child Data Table but you must know that your name of parent filed in Entity class must be parentId
+ * @param <I> is the type of database Identity class such as Long,String, ...
+ * @apiNote this methode used for create and get Parent child Data Table, but you must know that your name of parent filed in Entity class must be parentId
  */
 public interface TreeJdbcRepository<T, I extends Serializable> extends JdbcRepository<T, I> {
 

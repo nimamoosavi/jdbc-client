@@ -1,13 +1,13 @@
 package app.ladderproject.jdbcclient.service.impl;
 
+import app.ladderproject.core.domain.dto.PageDTO;
+import app.ladderproject.core.packages.crud.view.Keyword;
+import app.ladderproject.core.packages.crud.view.Query;
+import app.ladderproject.core.packages.crud.view.Sort;
+import app.ladderproject.core.service.exception.ApplicationException;
+import app.ladderproject.core.service.exception.ServiceException;
 import app.ladderproject.jdbcclient.repository.JdbcRepository;
 import app.ladderproject.jdbcclient.repository.filter.SpecificationBuilder;
-import com.webold.framework.domain.dto.PageDTO;
-import com.webold.framework.packages.crud.view.Keyword;
-import com.webold.framework.packages.crud.view.Query;
-import com.webold.framework.packages.crud.view.Sort;
-import com.webold.framework.service.exception.ApplicationException;
-import com.webold.framework.service.exception.ServiceException;
 import app.ladderproject.jdbcclient.service.JdbcService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -26,13 +26,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-import static com.webold.framework.enums.exception.ExceptionEnum.NOT_SAVE;
-import static com.webold.framework.enums.exception.ExceptionEnum.NOT_UPDATE;
+import static app.ladderproject.core.enums.exception.ExceptionEnum.NOT_SAVE;
+import static app.ladderproject.core.enums.exception.ExceptionEnum.NOT_UPDATE;
+
 
 /**
  * @param <T> is the BaseObject class
- * @param <I> is the type of data base Identity class such as Long,String, ...
- * @apiNote this class you must extended your service and create a bean of it and is the implementation of General Repository in Crud Library
+ * @param <I> is the type of database Identity class such as Long,String, ...
+ * @apiNote this class you must extend your service and create a bean of it and is the implementation of General Repository in Crud Library
  */
 public abstract class JdbcServiceImpl<T, I extends Serializable> implements JdbcService<T, I> {
 

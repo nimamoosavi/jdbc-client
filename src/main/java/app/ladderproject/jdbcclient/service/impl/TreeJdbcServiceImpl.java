@@ -1,10 +1,10 @@
 package app.ladderproject.jdbcclient.service.impl;
 
+import app.ladderproject.core.domain.dto.PageDTO;
+import app.ladderproject.core.packages.crud.view.Criteria;
+import app.ladderproject.core.packages.crud.view.Operator;
+import app.ladderproject.core.packages.crud.view.Query;
 import app.ladderproject.jdbcclient.repository.TreeJdbcRepository;
-import com.webold.framework.domain.dto.PageDTO;
-import com.webold.framework.packages.crud.view.Criteria;
-import com.webold.framework.packages.crud.view.Operator;
-import com.webold.framework.packages.crud.view.Query;
 import app.ladderproject.jdbcclient.service.TreeJdbcService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
