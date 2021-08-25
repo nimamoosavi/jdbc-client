@@ -27,7 +27,7 @@ public interface JdbcService<T, I extends Serializable> extends GeneralRepositor
     /**
      * @param sql                is the native query for execute in Data Base
      * @param sqlParameterSource is the parameter source for execute parametric
-     * @return List<Map < String, Object>> of the result of data base
+     * @return List<Map < String, Object>> of the result of database
      */
     List<Map<String, Object>> queryForList(String sql, MapSqlParameterSource sqlParameterSource);
 
@@ -67,7 +67,7 @@ public interface JdbcService<T, I extends Serializable> extends GeneralRepositor
      * @param sql          is the native query for execute in Data Base
      * @param queryTimeOut is the time that you want method wait for response
      * @param tClass       the class you want cast it
-     * @return T is the Object of result from data base
+     * @return T is the Object of result from database
      */
     T query(String sql, int queryTimeOut, Class<T> tClass);
 
@@ -90,27 +90,27 @@ public interface JdbcService<T, I extends Serializable> extends GeneralRepositor
     int queryTimeOut();
 
     /**
-     * @param namedParameterJdbcTemplate is the Object of Spring that you must used it for execute query
+     * @param namedParameterJdbcTemplate is the Object of Spring that you must use it for execute query
      * @return the Object Time out of Connection
      */
     int queryTimeOut(NamedParameterJdbcTemplate namedParameterJdbcTemplate);
 
     /**
-     * @param jdbcTemplate is the Object of Spring that you must used it for execute query
+     * @param jdbcTemplate is the Object of Spring that you must use it for execute query
      * @return the Object Time out of Connection
      */
     int queryTimeOut(JdbcTemplate jdbcTemplate);
 
     /**
      * @param t the Entity View Model that you must Add To Data Base
-     * @return the Optional Of Entity that save it in data base
+     * @return the Optional Of Entity that save it in database
      * @apiNote this method used SpringJpa
      */
     T save(T t);
 
     /**
      * @param t  the Entity View Model that you must Add To Data Base
-     * @return the Entity that save it in data base
+     * @return the Entity that save it in database
      * @apiNote this method used SpringJpa
      */
     T update(T t);
@@ -123,8 +123,8 @@ public interface JdbcService<T, I extends Serializable> extends GeneralRepositor
     List<T> saveAll(List<T> tList);
 
     /**
-     * @param id the incrementalId of data base Object
-     * @return the Entity that save it in data base
+     * @param id the incrementalId of database Object
+     * @return the Entity that save it in database
      * @apiNote used for fetch Data By IncrementalId And this method used SpringJpa
      */
     Optional<T> findById(I id);
@@ -174,7 +174,7 @@ public interface JdbcService<T, I extends Serializable> extends GeneralRepositor
     long count(Query query);
 
     /**
-     * @param id is the incrementalId of Object that you need too remove it from Data Base
+     * @param id is the incrementalId of Object that you need to remove it from Data Base
      * @throws RuntimeException has throw if Delete Method Not Acceptable
      * @apiNote this method used SpringJpa
      */
