@@ -17,7 +17,7 @@ public interface TreeJdbcRepository<T, I extends Serializable> extends JdbcRepos
     /**
      *
      * @param id is the id of parent for search in data Table
-     * @return List<T> is the All Child Of ParentId
+     * @return List<T> is the Child Of ParentId
      */
     List<T> findAllByParentId(I id);
 
@@ -25,7 +25,7 @@ public interface TreeJdbcRepository<T, I extends Serializable> extends JdbcRepos
      *
      * @param id is the id of parent for search in data Table
      * @param pageable is the Pageable of spring class
-     * @return Page<T> is the All Child Of ParentId
+     * @return Page<T> is the Child Of ParentId
      */
     Page<T> findAllByParentId(I id, Pageable pageable);
 
