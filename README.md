@@ -1,4 +1,4 @@
-[[/images/jdbc.png |"Jdbc"]]
+![Jdbc-client Project](https://github.com/nimamoosavi/jdbc-client/wiki/images/jdbc.png)
 
 this interface is the implementation of JpaRepository of Spring Data And JPA and generic specifications of Spring Data
 JPA to query any parameter, you can find know about it in {@link <a https://spring.io/projects/spring-data-jpa</a>}
