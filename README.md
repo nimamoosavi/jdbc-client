@@ -1,5 +1,5 @@
 # Generic Repository
-This project is to use JPA and generic specifications of Spring Data JPA to query any parameter
+This project use JPA and generic specifications of Spring Data JPA to query and fetch data from relational database 
 
 ## Use
 To Use this library in your project add dependencies in maven:
