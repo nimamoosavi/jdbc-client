@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.Objects;
 
-import static app.ladderproject.core.enums.exception.ExceptionEnum.NOT_SAVE;
+import static app.ladderproject.core.enums.exception.Exceptions.NOT_SAVE;
 
 
 @Component

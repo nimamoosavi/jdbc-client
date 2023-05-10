@@ -26,8 +26,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-import static app.ladderproject.core.enums.exception.ExceptionEnum.NOT_SAVE;
-import static app.ladderproject.core.enums.exception.ExceptionEnum.NOT_UPDATE;
+import static app.ladderproject.core.enums.exception.Exceptions.NOT_SAVE;
+import static app.ladderproject.core.enums.exception.Exceptions.NOT_UPDATE;
 
 
 /**

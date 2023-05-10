@@ -17,7 +17,7 @@ import java.util.List;
 public interface TreeJdbcService<T, I extends Serializable> extends JdbcService<T, I>, TreeRepository<T,I> {
 
     /**
-     * find all root parent
+     * find all root parents
      * @return List<T> of parent
      */
     List<T> findAllParent();
@@ -34,7 +34,7 @@ public interface TreeJdbcService<T, I extends Serializable> extends JdbcService<
      * @param page the page number that you want find in pagination
      * @param pageSize the total of data that you need to fetch in per page
      * @param query the Object you can set for where clause
-     * @return PageDTO<List<T>>  that object of pagination
+     * @return PageDTO<List<T>> that object of pagination
      */
     PageDTO<List<T>> findAllParent(int page, int pageSize, Query query);
 
@@ -42,7 +42,7 @@ public interface TreeJdbcService<T, I extends Serializable> extends JdbcService<
      *
      * @param page the page number that you want find in pagination
      * @param pageSize the total of data that you need to fetch in per page
-     * @return PageDTO<List<T>>  that object of pagination
+     * @return PageDTO<List<T>> that object of pagination
      */
     PageDTO<List<T>> findAllParent(int page, int pageSize);
 
@@ -58,7 +58,7 @@ public interface TreeJdbcService<T, I extends Serializable> extends JdbcService<
      * @param page the page number that you want find in pagination
      * @param pageSize the total of data that you need to fetch in per page
      * @param pid the parent id for get child
-     * @return PageDTO<List<T>>  that object of pagination {@link PageDTO}
+     * @return PageDTO<List<T>> that object of pagination {@link PageDTO}
      */
     PageDTO<List<T>> findAll(int page, int pageSize, I pid);
 
@@ -68,7 +68,7 @@ public interface TreeJdbcService<T, I extends Serializable> extends JdbcService<
      * @param pageSize the total of data that you need to fetch in per page
      * @param query the Object you can set for where clause
      * @param pid the parent id for get child
-     * @return PageDTO<List<T>>  that object of pagination {@link PageDTO}
+     * @return PageDTO<List<T>> that object of pagination {@link PageDTO}
      */
     PageDTO<List<T>> findAll(int page, int pageSize, Query query, I pid);
 }
